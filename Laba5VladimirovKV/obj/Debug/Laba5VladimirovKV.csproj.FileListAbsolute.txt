@@ -1,0 +1,10 @@
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\bin\Debug\Laba5VladimirovKV.exe.config
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\bin\Debug\Laba5VladimirovKV.exe
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\bin\Debug\Laba5VladimirovKV.pdb
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.csprojAssemblyReference.cache
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.Form1.resources
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.Properties.Resources.resources
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.csproj.GenerateResource.cache
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.csproj.CoreCompileInputs.cache
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.exe
+D:\source\repos\Laba5VladimirovKV\Laba5VladimirovKV\obj\Debug\Laba5VladimirovKV.pdb
