@@ -192,7 +192,6 @@ namespace Laba5VladimirovKV
 					int Value;
 					Value = Convert.ToInt32(TextBox.Text);
 
-					if (Value < 0) Value = 0;
 					TextBox.Text = String.Format("{0}", Value);
 
 					return Value;
@@ -208,9 +207,12 @@ namespace Laba5VladimirovKV
 
 		static bool IsNum(string s) //Проверяем строчку состоит она из цифр или других символов
 		{
+			bool MinusCheck = false;
+			if (s[0] == '-')
+				MinusCheck = true;
 			foreach (char c in s)
 			{
-				if (!Char.IsDigit(c)) return false;
+				if (!Char.IsDigit(c) && MinusCheck == false) return false;
 			}
 			return true;
 		}
