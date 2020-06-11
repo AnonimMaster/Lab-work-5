@@ -31,7 +31,6 @@ namespace Laba5VladimirovKV
 		private void button2_Click(object sender, EventArgs e)
 		{
 			textBox2.Clear();// освобождаем textBox2
-			textBox3.Clear(); // освобождаем textBox3
 							  // Создаем объект диалогового окна для открытия файла
 			OpenFileDialog ofd = new OpenFileDialog();
 			//назначаем заголовок диалогового окна открытия файла
@@ -48,9 +47,11 @@ namespace Laba5VladimirovKV
 					textBox2.Text = sr.ReadToEnd();
 				}
 				textBox6.Text = ofd.FileName;// в textBox6 записываем имя файла
-				button3.Enabled = true; // делаем активной кнопку button3
 				button4.Enabled = true;
 				button5.Enabled = true;
+				button3.Enabled = false;
+				textBox7.Text = "";
+				textBox8.Text = "";
 			}
 
 		}
@@ -58,7 +59,6 @@ namespace Laba5VladimirovKV
 		private void button1_Click(object sender, EventArgs e)
 		{
 			textBox2.Clear(); // освобождаем textBox2
-			textBox3.Clear(); // освобождаем textBox3
 			int n = CorrectInput(textBox1);// получаем числовое значение из textBox1
 			if (n < 1) // проверка допустимости значения, введенного пользователем
 			{
@@ -84,31 +84,6 @@ namespace Laba5VladimirovKV
 														  //запись одного числа в файл без символа перехода на новую строку
 					sw.Write(r.Next(-500, 500));
 				}
-			}
-
-		}
-
-		private void button3_Click(object sender, EventArgs e)
-		{
-			textBox3.Clear(); // освобождаем textBox3
-			int min = CorrectInput(textBox4);// получаем числовое значение из textBox4
-			int max = CorrectInput(textBox5);// получаем числовое значение из textBox5
-			if (min > max)// проверка допустимости значения, введенного пользователем
-				textBox3.Text = String.Format("Диапазон задан некорректно");
-			else
-			{
-				int x, k = 0;
-				foreach (string line in textBox2.Lines)// цикл по всем строкам в textBox2
-				{
-					x = Int32.Parse(line); // перевод одной строки line из textBox2 в число х
-					if (x >= min && x <= max)
-					{// добавление строки, содержащей найденное число, в textBox3
-						textBox3.AppendText(line + Environment.NewLine);
-						k++;
-					}
-				}
-				if (k == 0) // проверка, найдено ли хоть одно число в указанном диапазоне
-					textBox3.Text = String.Format("В массиве нет значений, принадлежащих указанному диапазону");
 			}
 
 		}
@@ -142,7 +117,8 @@ namespace Laba5VladimirovKV
 			{
 				textBox7.Text = "Чётных и Нечётных одинаковое кол-во.";
 			}
-			
+			if (textBox8.Text != "")
+				button3.Enabled = true;
 		}
 
 		private void button5_Click(object sender, EventArgs e)
@@ -172,12 +148,14 @@ namespace Laba5VladimirovKV
 							Max = x;
 					}
 				}
-				textBox8.Text = "Наибольшая Чётная - " + Max;
+				textBox8.Text = "Наибольшая Чётная: " + Max;
 			}
 			else
 			{
 				textBox8.Text = "Чётных нет...";
 			}
+			if(textBox7.Text!="")
+				button3.Enabled = true;
 		}
 
 		static int CorrectInput(TextBox TextBox)
@@ -215,6 +193,34 @@ namespace Laba5VladimirovKV
 				if (!Char.IsDigit(c) && MinusCheck == false) return false;
 			}
 			return true;
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog sfd = new SaveFileDialog();// Создаем диалоговое окно для открытия файла
+			sfd.Title = "Выберите файл для записи массива";//задаем заголовок диалогового окна
+			sfd.InitialDirectory = @"C:\";// задаем начальный путь для сохранения файла
+										  // Создаем фильтр для отображаемых типов файлов
+			sfd.Filter = "txt file (*.txt)|*.txt|all files (*.*)|*.*";
+
+			// открываем окно для сохранения файла командой sfd.ShowDialog() 
+			//и проверяем, нажата ли кнопка "Сохранить" в этом окне, т.е.достигнут ли результат "ОК"
+			if (sfd.ShowDialog() == DialogResult.OK)
+			{// открываем файл для записи (дозапись исключена)
+				using (StreamWriter sw = new StreamWriter(sfd.FileName))
+				{
+					sw.WriteLine("Исходный массив:");
+					int x;
+					foreach (string line in textBox2.Lines)// цикл по всем строкам в textBox2
+					{
+						x = Int32.Parse(line); // перевод одной строки line из textBox2 в число х
+						sw.WriteLine(x);
+					}
+					sw.WriteLine("Ваш массив содержит следующие характеристики:");
+					sw.WriteLine(textBox7.Text);
+					sw.WriteLine(textBox8.Text);
+				}
+			}
 		}
 	}
 }
